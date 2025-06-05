@@ -1,0 +1,13 @@
+name: TV PushPlus Notifier
+
+on:
+  repository_dispatch:
+    types: [tv_alert]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send alert to PushPlus
+        run: |
+          curl -X POST "https://www.pushplus.plus/send?token=fa7e3ae0480c4aec900a79ca110835d3&title=${{ github.event.client_payload.title }}&content=${{ github.event.client_payload.content }}&template=html"
