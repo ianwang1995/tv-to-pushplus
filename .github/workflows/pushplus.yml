@@ -1,0 +1,17 @@
+name: Forward Alert to PushPlus
+
+on:
+  repository_dispatch:
+    types: [tv-alert]
+
+jobs:
+  forward:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send to PushPlus
+        run: |
+          curl -X POST https://www.pushplus.plus/send \
+            -d "token=fa7e3ae0480c4aec900a79ca110835d3" \
+            -d "title=${{ github.event.client_payload.title }}" \
+            -d "content=${{ github.event.client_payload.content }}" \
+            -d "template=html"
