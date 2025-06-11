@@ -16,3 +16,10 @@ jobs:
             -d "content=${{ github.event.client_payload.content }}" \
             -d "template=html" \
             -v
+
+          curl -X POST https://www.pushplus.plus/send \
+            -d "token=5ed6b637cd8141308dccde3c4135c0f1" \
+            -d "title=${{ github.event.client_payload.title }}" \
+            -d "content=${{ github.event.client_payload.content }}" \
+            -d "template=html" \
+            -v
